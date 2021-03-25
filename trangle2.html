@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Canvas</title>
+		<style type="text/css">
+			body{
+				font-family:"Century Gothic";
+				font-size:.9em;
+			}
+			#c1{
+				background-color:#CEDEF7;
+			}
+		</style>
+	</head>
+	<body onload="abc()">
+		<center>
+			<canvas id="c1" width="800px" height="800px"></canvas>
+		</center>
+		<script type="text/javascript">
+			function abc(){
+				var crc=document.getElementById("c1");
+				var can=crc.getContext("2d");
+				
+				can.fillStyle="Green";
+				can.strokeStyle="Yellow";
+				can.lineWidth=5;
+				
+				can.beginPath();
+				can.moveTo(100,400);
+				can.lineTo(200,200);
+				can.lineTo(400,400);
+				can.closePath();
+				
+				can.stroke();
+				can.fill();
+			}
+		</script>
+	</body>
+</html>

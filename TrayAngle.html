@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Line Join</title>
+<style type="text/css" rel="stylesheet">
+body{
+color:blue;
+}
+
+#myCanvas{
+width:600px;
+border:1px solid black;
+}
+
+</style>
+</head>
+<body >
+
+
+<h1>Linewidth</h1>
+
+<canvas id="myCanvas" width='800' height='800' style="border:1px solid #d3d3d3">
+
+</canvas>
+
+<script type="text/javascript">
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext('2d');
+
+ctx.fillStyle='green';
+ctx.strokeStyle="black";
+ctx.lineWidth=5;
+ctx.beginPath();
+ctx.moveTo(100,400);
+ctx.lineTo(200,200);
+ctx.lineTo(300,400);
+
+ctx.closePath();
+ctx.fill();
+
+</script>
+</body>
+</html>

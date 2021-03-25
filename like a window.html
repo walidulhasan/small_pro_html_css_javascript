@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head onload="drawLineWidth()">
+ <title></title>
+ <script src="Scripts/jquery-3.5.1.js"></script>
+ <style>
+     #main{
+        font-family: "Century Gothic";
+        font-size: .9em;
+        margin: 10px auto;
+        color: darkblue;
+        max-width: 800px;
+        width: 95%;
+        border-radius: 10px;
+        background: rgb(214 ,214 ,214);
+        box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+     }
+ </style>
+</head>
+<body id="main" onload="drawLine()">
+    <center>
+        <canvas id="Canvas" width="800" height="600">
+            You need a browser that supports HTML5!
+        </canvas>
+    </center>
+ 
+ <script>
+     function drawLine() {
+    var canvas = document.getElementById('Canvas')
+    var tx = canvas.getContext('2d')
+    var offset = 35
+    var width = 5
+    var height = 5
+    var lineWidth = 1
+    var i = 0
+    var centerX = canvas.width / 2
+    var centerY = canvas.height / 2;
+    for (i = 1; i < 16; i++) {
+    tx.lineWidth = i;
+    tx.strokeRect(centerX - (width / 2) - (i * offset / 2),
+    centerY - (height / 2) - (i * offset / 2),
+    width + (i * offset), height + (i * offset));
+ }
+}
+ </script>
+</body>
+</html>

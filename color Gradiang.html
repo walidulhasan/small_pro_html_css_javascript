@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Canvas</title>
+		<style type="text/css">
+			body{
+				font-family:"Century Gothic";
+				font-size:.9em;
+			}
+			#myCanvas{
+				width:600px;
+				height:600px;
+				border:1px solid #000;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas"></canvas>
+		<script type="text/javascript">
+			var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			//Create Gradiant
+			
+			var grd=ctx.createLinearGradient(20,0,220,0);
+			grd.addColorStop(0.3,"red");
+			grd.addColorStop(1,"white");
+			grd.addColorStop(0.8,"green");
+			grd.addColorStop(0.6,"yellow");
+			
+			//fill gradient
+			ctx.fillStyle=grd;
+			ctx.fillRect(50, 20, 300, 50);
+		</script>
+	</body>
+</html>

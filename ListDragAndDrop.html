@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drag List Item</title>
+		<style type="text/css">
+			body{
+				font-family:"Century Gothic";
+				font-size:.9em;
+				margin: 10px auto;
+				color: darkblue;
+				max-width: 800px;
+				width: 95%;
+				border-radius: 10px;
+				background: rgb(214 ,214 ,214);
+				box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+				
+				
+			}
+			#fCountry{
+				min-height:150px;
+				color:red;
+				font-size: 15px;
+				width:450px;
+				border-radius: 10px;
+				background: rgb(214 ,214 ,214);
+				box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+				margin: 10px auto;
+				padding-top: 5px;
+			}
+			#CountryList li{
+				font-size: 20px;
+				background: #d6d6d6;
+				padding-top: 15px;
+				padding-bottom: 15px ;
+				letter-spacing: 1.5px;
+				width: auto;;
+				margin: 22px;
+				border: none;
+				border-radius: 24px;
+				font-weight: bold;
+				box-shadow: -6px -6px 20px 0 rgba(255, 255, 255, 0.7), 
+				6px 6px 20px 0 rgba(0, 0, 0, 0.2);
+			}
+			.ab{
+				padding-left: 8px;
+			}
+		
+		</style>
+		<script src="Scripts/jquery-3.5.1.js"></script>
+		<script src="Scripts/jquery-migrate-3.3.0.js"></script>
+	</head>
+	<body>
+		<h2 style="padding:8px 0 0 8px;">Your Country Name Please?</h2>
+		<ul id="CountryList">
+			<li draggable="true" data-value="Country,Bangladesh"><b class="ab">Bangladesh</b></li>
+			<li draggable="true" data-value="Country,Pakistan"><b class="ab">Pakistan</b></li>
+			<li draggable="true" data-value="Country,India"><b class="ab">India</b></li>
+			<li draggable="true" data-value="Country,USA"><b class="ab">USA</b></li>
+		</ul>
+		<center><h2>Drop your Country Name bellow</h2></center>
+		<ul id="fCountry"></ul>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				jQuery.event.props.push('dataTransfer');
+				$("#CountryList").on('dragstart',dragging);
+				$("#fCountry").on('dragenter',preventDefault);
+				$("#fCountry").on('dragover',preventDefault);
+				$("#fCountry").on('drop',dropItem);
+			});
+			function dragging(e){
+				var data=e.target.getAttribute('data-value');
+				e.dataTransfer.setData('text',data);
+				e.dataTransfer.effectAllowed='copy';
+			}
+			function preventDefault(e) {
+				e.preventDefault();
+			}
+			function dropItem(e){
+				var data = e.dataTransfer.getData('text').split(',');
+				if(data[0] == 'Country') {
+				var li = document.createElement('li');
+				li.textContent = data[1];
+				e.target.appendChild(li);
+				}
+			}
+		</script>
+	</body>
+</html>

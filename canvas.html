@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas</title>
+<script type='text/javascript' src='Scripts/jquery-3.5.1.js'></script>
+<script type='text/javascript'>
+$(document).ready(function(){
+var c=document.getElementById('can').getContext('2d');
+
+c.moveTo(100,100);
+
+c.lineTo(200,300)
+c.lineTo(300,100)
+c.arcTo(200,300,100,100,130)
+c.lineTo(100,100)
+c.stroke()
+
+})
+
+</script>
+</head>
+<body>
+<canvas id='can' width='800' height='500'></canvas>
+</body>
+</html>

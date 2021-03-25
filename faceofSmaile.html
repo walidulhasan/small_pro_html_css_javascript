@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas test</title>
+<style type='text/css'>
+#myCanvas{
+padding:0;
+width:600px;
+margin: 20px auto;
+border:1px solid black;
+
+}
+
+#canvasdiv{
+padding:0;
+width:660px;
+margin: 20px auto;
+border:1px solid black;
+}
+body{
+
+}
+</style>
+</head>
+<body>
+<div id='canvasdiv'>
+<canvas id="myCanvas">
+YourBrowser does not support canvas
+</canvas>
+</div>
+<script type='text/javascript'>
+
+window.addEventListener("load",function(){
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+ctx.beginPath();
+ctx.arc(100,75,50,0,2*Math.PI);
+ctx.moveTo(134,96);
+ctx.arc(100,60,50,0.25*Math.PI,0.75*Math.PI);
+ctx.moveTo(85,75);
+ctx.arc(75,75,10,0,2*Math.PI);
+ctx.moveTo(135,75);
+ctx.arc(125,75,10,0,2*Math.PI);
+ctx.stroke();
+});
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas test</title>
+<style type='text/css'>
+#myCanvas{
+border:1px solid black;
+background-color:green;
+margin:20px auto;
+}
+
+body{
+
+}
+</style>
+</head>
+<body>
+<div id='canvasdiv'>
+<canvas id="myCanvas">
+YourBrowser does not support canvas
+</canvas>
+</div>
+<script type='text/javascript'>
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.fillStyle="rgba(255,0,0,1)";
+ctx.strokeStyle="rgba(255,0,0,.2)";
+ctx.arc(150,75,50,0*Math.PI,2*Math.PI,true);
+ctx.fill();
+
+
+ctx.stroke();
+
+</script>
+</body>
+</html>

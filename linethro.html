@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>listPiramid</title>
+ <!-- <link href="Content/canvasPath.css" rel="stylesheet" /> -->
+ <script src="Scripts/jquery-3.5.1.js"></script>
+ 
+</head>
+<body onload="drawArcTo()">
+ <canvas id="Canvas" width="800" height="600">
+ </canvas>
+ <script>
+    function drawArcTo() {
+    var canvas = document.getElementById('Canvas')
+    var cx = canvas.getContext('2d');
+    cx.strokeStyle = 'gray';
+    cx.lineWidth = 1;
+    cx.beginPath();
+    cx.moveTo(300, 200);
+    cx.lineTo(400, 500);
+    cx.lineTo(600, 300);
+    cx.stroke();
+    cx.strokeStyle = 'black';
+    cx.lineWidth = 5;
+    cx.beginPath();
+    cx.lineTo(300, 200);
+    cx.arcTo(400, 500, 600, 300, 0);
+	cx.lineTo(600, 300);
+    cx.stroke();
+    }
+</script>
+</body>
+
+</html>
