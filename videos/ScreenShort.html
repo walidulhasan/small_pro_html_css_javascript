@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capturing Snapshot</title>
+<style>
+#video{
+    margin: 10px auto;
+    max-width: 800px;
+    width: 600px;
+	height:339px;
+    border-radius: 10px;
+    background: rgb(214 ,214 ,214);
+    box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+}
+#am{
+    margin: 10px auto;
+    max-width: 805px;
+    width: 611px;
+	height:356px;
+    border-radius: 10px;
+    background: rgb(214 ,214 ,214);
+    box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+}
+#btnSnapshot{
+    background: #d6d6d6;
+    padding-top: 4px;
+    padding-bottom: 4px ;
+    letter-spacing: 1px;
+    width: auto;;
+    border:1px solid blue;
+    border-radius: 14px;
+    font-weight: bold;
+
+
+    box-shadow: -6px -6px 20px 0 rgba(255, 255, 255, 0.7), 
+    6px 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+#btnSnapshot:hover{
+    box-shadow: inset -6px -6px 20px 0 rgba(255, 255, 255, 0.7), 
+    inset 6px 6px 20px 0 rgba(0, 0, 0, 0.2);
+    color:green;
+}
+#myCanvas{
+    margin: 10px auto;
+    max-width: 800px;
+    width: 600px;
+    border-radius: 10px;
+    background: rgb(214 ,214 ,214);
+    margin-bottom: 30px;
+    height: 270px;
+}
+#aw{
+    font-size: 20px;
+}
+#main{
+    border-radius: 10px;
+    background: rgb(214 ,214 ,214);
+    box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+    height: 690px;
+    padding: 10px;
+    margin: 10px;
+}
+</style>
+<script src='Scripts/jquery-3.5.1.js'></script>
+<script>
+$(document).ready(function(){
+$('#btnSnapshot').on('click',drawViewImage);
+})
+
+function drawViewImage(){
+var canvas=document.getElementById('myCanvas');
+var video=document.getElementById('video');
+canvas.getContext('2d').drawImage(video,0,0,600,200);
+}
+</script>
+</head>
+<body id="main">
+<center id="am"><video id='video' src='22.mp4' width='611' height='356' controls='controls' autoplay='autoplay'></video><br>
+<button id='btnSnapshot'><b id="aw">Snap Shot</b></button><br>
+<canvas id='myCanvas' ></canvas>
+</center>
+</body>
+</html>

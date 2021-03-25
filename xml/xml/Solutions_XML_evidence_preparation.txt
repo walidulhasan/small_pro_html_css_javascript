@@ -1,0 +1,643 @@
+=======================================================
+	Solutin #1
+=======================================================
+?xml version="1.0" ?>
+<!--
+	Character entities and Special characters example	
+-->
+<examples>
+	<example>Show &amp; Tell Consulting &reg;</example>
+	<example>&#169;MIcrosof Corporation 2000</example>
+	<example>7 is &gt; 6</example>
+	<example>This is a trainee&apos;s exam rsult</example>
+	
+</examples>
+=======================================================
+	Solutin #2
+=======================================================
+<?xml version='1.0'?>
+	<!DOCTYPE scholarship [
+		<!ENTITY authority "IDB-BISEW">
+		<!ENTITY objective "To improve skills of underprivileged Muslim youth in IT field">
+		]>
+<scholarship>
+	<runby>&authority;</runby>
+	<objective>&objective;</objective>
+</scholarship>
+
+=======================================================
+	Solutin #3
+=======================================================
+Ev_3.dtd
+<!ELEMENT course (name, modules)>
+<!ATTLIST course course-id (ESAD-CS|ESAD-VB|NT) #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT modules (module+)>
+<!ELEMENT module (name, duration)>
+<!ELEMENT duration (#PCDATA)>
+<!ATTLIST module module-id ID #REQUIRED>
+
+To validate add refernce the Ev_3.dtd and validate
+<?xml version='1.0'?>
+<!DOCTYPE course SYSTEM "eve_3.dtd">
+<course course-id="ESAD-CS">
+	<name>Enterprise Ssytem Analysis and Design usin Visusl C Sharp</name>
+	<modules>
+		<module module-id="ESADCS-01">
+			<name>Programming Concepts</name>
+			<duration>80</duration>
+		</module>
+		<module module-id="ESADCS-02">
+			<name>Designing and implementing databases</name>
+			<duration>60</duration>
+		</module>
+	</modules>
+</course>
+=======================================================
+	Solutin #4
+=======================================================
+<?xml version="1.0"?>
+<!DOCTYPE name [
+	<!ELEMENT name ( first-name, middle-name?, last-name )>
+	<!ELEMENT first-name (#PCDATA) >
+	<!ELEMENT middle-name (#PCDATA) >
+	<!ELEMENT last-name (#PCDATA) >
+	]>
+	<name>
+		<first-name>Habibul</first-name>
+		<last-name>Haq</last-name>
+	</name>
+=======================================================
+	Solutin #5
+=======================================================
+External DTD file: persons.dtd
+<!ELEMENT persons (person*)>
+<!ELEMENT person ( name )>
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST person title (Mr | Mrs) #IMPLIED>
+Sample XML file: persons.xml
+<?xml version='1.0'?>
+<!DOCTYPE persons SYSTEM "persons.dtd">
+<persons>
+	<person title="Mr">
+		<name>Habib</habib>
+	</person>
+	<person>
+		<name>Shaheen Akhter</habib>
+	</person>
+</persons>
+=======================================================
+	Solutin #6
+=======================================================
+trainee.xml
+<?xml version=’1.0’>
+<trainee id=”107898”>
+	<name>Nazrul Islam</name>
+	<email>nazrul@idb-bisew.org</email>
+	<course>ESAD-CS</course>
+	<round>07</round>
+</trainee>
+trainee.html
+<html>
+	<head>
+		<title>Trainee info</title>
+		<script>
+		function loadXMLData()
+		{
+			var xmlDoc = new ActiveXObject( "microsoft.xmldom");
+			xmlDoc.load( "trainee.xml");
+			var trainee = xmlDoc.documentElement;
+			document.getElemetById( "divid" ).innerHTML = trainee.getAtrribute( "id");
+			document.getElemetById( "divname" ).innerHTML = trainee.childNode.item(0).text;
+			document.getElemetById( "divemail" ).innerHTML = trainee.childNode.item(1).text;
+			document.getElemetById( "divcourse" ).innerHTML = trainee.childNode.item(2).text;
+			document.getElemetById( "divround" ).innerHTML = trainee.childNode.item(3).text;
+		}
+		</script>
+	</head>
+	<body onload='loadXMLData();'>
+	<table>
+		<tr>
+			<th colspan='2'>IDB-BISEW Trainee</th>
+		</tr>
+		<tr>
+			<th>Name: </th><td><div id="divname"></div></td>
+		</tr>
+		<tr>
+			<th>ID: </th><td><div id="divid"></div></td>
+		</tr>
+		<tr>
+			<th>Email: </th><td><div id="divcemail"></div></td>
+		</tr>
+		<tr>
+			<th>Course: </th><td><div id="divcourse"></div></td>
+		</tr>
+		<tr>
+			<th>Round: </th><td><div id="divround"></div></td>
+		</tr>
+	</table>
+	</body>
+</html>
+
+=======================================================
+	Solutin #7
+=======================================================
+Ev_7.xml
+<?xml version="1.0"?>
+<book>
+	<name>SQL</name>
+	<price>700.00</price>
+	<author>
+		<first-name>James</first-name>
+		<last-name>Scott</last-name>
+	</author>
+</book>
+
+Ev_7.html
+
+<html>
+<head><title>Book Info</title>
+<style>
+td { font: 9pt verdana; }
+th { font: 9pt verdana; font-weight:bold;}
+caption { font: 9pt verdana; font-weight:bold;}
+</style>
+<script>
+    function loadData()
+    {
+        //alert( "ok" );
+        var xmlDoc = new ActiveXObject( "microsoft.xmldom");
+		xmlDoc.load( "Ev_7.xml");
+		var root = xmlDoc.documentElement;
+        document.getElementById( "bn" ).innerHTML = root.selectSingleNode( "/book/name" ).text;
+        document.getElementById( "bp" ).innerHTML = root.selectSingleNode( "/book/price" ).text;
+        document.getElementById( "ba" ).innerHTML = root.selectSingleNode( "/book/author/first-name" ).text +
+                                            " " + root.selectSingleNode( "/book/author/last-name" ).text;
+    }
+</script>
+</style
+</head>
+<body onload="loadData();">
+<div >
+<table border=1 bordercolor=#cccccc cellspacing=0>
+    <caption>Book Information</caption>
+    <tr>
+        <th align=left>Name:</th><td><span id="bn"></span></td>
+     </tr>
+    <tr>
+        <th align=left>Author:</th><td><span id="ba"></span></td>
+     </tr>
+     <tr>
+        <th align=left>Price:</th><td><span id="bp"></span></td>
+     </tr>
+</table>
+</div>
+</body>
+</html>
+=======================================================
+	Solutin #8
+=======================================================
+Ev_8.xml
+<?xml version="1.0"?>
+<trainees>
+	<trainee course="ESAD" round="7">
+		<name>Habib Haq</name>
+		<assignedto>BITL</assignedto>
+		<contact>0110889933</contact>
+	</trainee>
+	<trainee course="NT" round="7">
+		<name>Amin Haq</name>
+		<assignedto>DITL</assignedto>
+		<contact>0110887766</contact>
+	</trainee>
+	<trainee course="ESAD" round="7">
+		<name>Nazrul Islam</name>
+		<assignedto>BITL</assignedto>
+		<contact>0110786094</contact>
+	</trainee>
+</trainees>
+================================
+Ev_8.html
+================================
+<html>
+<head><title>Book Info</title>
+<style>
+td { font: 9pt verdana; }
+th { font: 9pt verdana; font-weight:bold;}
+caption { font: 9pt verdana; font-weight:bold;}
+</style>
+<script>
+    function loadData()
+    {
+        //alert( "ok" );
+        var xmlDoc = new ActiveXObject( "microsoft.xmldom");
+		xmlDoc.load( "Ev_8.xml");
+		var root = xmlDoc.documentElement;
+        var trainees = root.selectNodes( "/trainees/trainee[@course='ESAD']");
+        var d = document.getElementById("result" );
+     
+        var s = "<table border=1 cellspacong=0><tr><th>Name</th><th>Assigned TSP</th><th>Round</th><th>Contact</th></tr>";
+        for( var i =0; i < trainees.length; i++ )
+        {
+            var t = trainees.item(i);
+            s +="<tr>"+
+                "<td>"+ t.childNodes.item(0).text+"</td>"+
+                 "<td>"+ t.childNodes.item(1).text+"</td>"+
+                 "<td>"+ t.getAttribute( "round" )+"</td>"+
+                 "<td>"+ t.childNodes.item(2).text+"</td>"+
+                "</tr>";
+        }
+        s +="</table>";
+       d.innerHTML = s;
+    }
+</script>
+</style
+</head>
+<body onload="loadData();">
+<h3> Trainees of ESAD</h3>
+<div id="result"></div>
+</body>
+</html>
+=======================================================
+	Solutin #9
+=======================================================
+Ev_9.xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<CATALOG>
+<CD>
+<TITLE>Empire Burlesque</TITLE>
+<ARTIST>Bob Dylan</ARTIST>
+<COUNTRY>USA</COUNTRY>
+<COMPANY>Columbia</COMPANY>
+<PRICE>10.90</PRICE>
+<YEAR>1985</YEAR>
+</CD>
+<CD>
+<TITLE>No women no cry</TITLE>
+<ARTIST>Bob Marley</ARTIST>
+<COUNTRY>USA</COUNTRY>
+<COMPANY>Sony</COMPANY>
+<PRICE>10.90</PRICE>
+<YEAR>1980</YEAR>
+</CD>
+</CATALOG>
+Ev_9.html
+<html>
+<head>
+
+</head>
+<body>
+<xml src="Ev_9.xml" id="xmldso" async="false"></xml>
+
+<table datasrc="#xmldso" width="60%" border="1">
+<thead>
+<tr><th>Title</th><th>Artist</th><th>Year</th></tr></thead>
+<tr align="left"><td><span datafld="TITLE"></span></td>
+<td><span datafld="ARTIST"></span></td>
+<td><span datafld="YEAR"></span></td></tr>
+</table>
+
+
+</table>
+</body>
+</html>
+=======================================================
+	Solutin #10
+=======================================================
+Ev_10.xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<CATALOG>
+<CD>
+<TITLE>Empire Burlesque</TITLE>
+<ARTIST>Bob Dylan</ARTIST>
+<COUNTRY>USA</COUNTRY>
+<COMPANY>Columbia</COMPANY>
+<PRICE>10.90</PRICE>
+<YEAR>1985</YEAR>
+</CD>
+<CD>
+<TITLE>No women no cry</TITLE>
+<ARTIST>Bob Marley</ARTIST>
+<COUNTRY>USA</COUNTRY>
+<COMPANY>Sony</COMPANY>
+<PRICE>10.90</PRICE>
+<YEAR>1980</YEAR>
+</CD>
+</CATALOG>
+Ev_10.html
+<html>
+<head>
+<script type="text/javascript">
+function movenext()
+{
+alert('ok');
+x=xmldso.recordset;
+if (x.absoluteposition < x.recordcount)
+  {
+  x.movenext();
+  }
+  else
+  {
+	alert( "This the last record." );
+  }
+}
+function moveprevious()
+{
+x=xmldso.recordset;
+if (x.absoluteposition > 1)
+  {
+  x.moveprevious();
+  }
+  else
+  {
+	alert( "This the first record" );
+  }
+}
+</script>
+</head>
+<body>
+<xml src="Ev_10.xml" id="xmldso" async="false"></xml>
+
+<p>
+Title:
+<span datasrc="#xmldso" datafld="TITLE"></span>
+<br />Artist:
+<span datasrc="#xmldso" datafld="ARTIST"></span>
+<br />Year:
+<span datasrc="#xmldso" datafld="YEAR"></span>
+</p>
+<p>
+<input type="button" value="Previous CD"
+onclick="moveprevious()" />
+<input type="button" value="Next CD"
+onclick="movenext()" />
+</p>
+</table>
+</body>
+</html>
+=======================================================
+	Solutin #11
+=======================================================
+trainee.xsl
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:template match="/">
+	<html>
+	<head>
+		<title>Trainee info</title>
+		
+	<body>
+	<table>
+		<tr>
+			<th colspan='2'>IDB-BISEW Trainee</th>
+		</tr>
+		<xsl:apply-templates select="trainee" />
+	</table>
+	</body>
+</html>
+	</xsl:template>
+	<xsl:template match="trainee">
+		<tr>
+			<th>Name: </th><td><xsl:value-of select="name" /></div></td>
+		</tr>
+		<tr>
+			<th>ID: </th><td><xsl:value-of select="@id" /></td>
+		</tr>
+		<tr>
+			<th>Email: </th><td><a href="mailto:{email}"><xsl:value-of select="email" /></a></td>
+		</tr>
+		<tr>
+			<th>Course: </th><td><xsl:value-of select="course" /></td>
+		</tr>
+		<tr>
+			<th>Round: </th><td><<xsl:value-of select="round" /></td>
+		</tr>
+	</xsl:template>
+</xsl:stylesheet>
+trainee.xml
+<?xml version=’1.0’>
+<?xml-stylesheet type="text/xsl" href="trainee.xsl"?>
+<trainee id=”107898”>
+	<name>Nazrul Islam</name>
+	<email>nazrul@idb-bisew.org</email>
+	<course>ESAD-CS</course>
+	<round>07</round>
+</trainee>
+
+=======================================================
+	Solutin #12
+=======================================================
+books.xsl
+xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="html"/>
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Using XSLT functions</title>
+				<style>
+					body
+					{
+						font: normal 8pt verdana;
+					}
+				</style>
+			</head>
+			<body>
+				<h3>Here are some use of XSL functions:</h3>
+				Number of books: <xsl:value-of select="count(books/book)"/>
+				<br/>
+				Number of 4th edition books: <xsl:value-of select="count(books/book[edition=4])"/>
+				<br/>
+				Last book in the list: <xsl:value-of select="books/book[position()=last()]/name"/>
+				<br/>
+				Price of first book: <xsl:value-of select="number(books/book[position()=1]/price)"/>
+				<br/>
+				Sum of price of all the books: <xsl:value-of select="sum(books/book/price)"/>
+				<br/>
+
+
+				
+			</body>
+		</html>
+	</xsl:template>
+	
+</xsl:stylesheet>
+to test change as below
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="books.xsl"?>
+<books>
+	------
+</books>
+
+=======================================================
+	Solutin #13
+=======================================================
+books.xsl
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="html"/>
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Using xsl:if</title>
+				<style>
+					body
+					{
+						font: normal 8pt verdana;
+					}
+					table
+					{
+					font: normal 8pt verdana;
+					}
+				</style>
+			</head>
+			<body>
+				<h3>Available books in store:</h3>
+				<table border="1" cellpadding="2" cellspacing="0">
+						<tr>
+							<th>Name</th><th>Author</th><th>Price</th><th>Edition</th><th>Publisher</th>
+						</tr>
+						<xsl:apply-templates select="books/book"/>
+				</table>
+				
+				
+			</body>
+		</html>
+	</xsl:template>
+	<xsl:template match="book">
+		<xsl:if test="@available = 'yes'">
+			<tr>
+				<td><xsl:value-of select="name"/></td>
+				<td><xsl:value-of select="author"/></td>
+				<td>$<xsl:value-of select="price"/></td>
+				<td><xsl:value-of select="edition"/></td>
+				<td><xsl:value-of select="publisher"/></td>
+			</tr>
+		</xsl:if>
+	</xsl:template>
+</xsl:stylesheet>
+
+books.xml 
+to test change as below
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="books.xsl"?>
+<books>
+	------
+</books>
+=======================================================
+	Solutin #14
+=======================================================
+trainee.xsd
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="trainee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string" />
+        <xs:element name="course" type="xs:string"/>
+        <xs:element name="round" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+ 
+</xs:schema>
+trainee.xml
+<?xml version="1.0" ?>
+	<trainee id="10789" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:noNamespaceSchemaLocation="trainee.xsd" >
+		<name>Al Amin</name>
+		<course>ESAD</course>
+		<round>5</round>
+	</trainee>
+=======================================================
+	Solutin #15
+=======================================================
+trainees.xsd
+<?xml version='1.0'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:simpleType name="char8Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="varchar50Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="trainees">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="trainee" maxOccurs="unbounded" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="traineeid" type="char8Type"/>
+							<xsd:element name="traineename" type="varchar50Type" />
+							<xsd:element name="email" type="varchar50Type"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
+Sample XML
+<?xml version='1.0'?>
+	<trainees xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="trainees.xsd">
+		<trainee>
+			<traineeid>12345678</traineeid>
+			<traineename>Nazrul</traineename>
+			<email>nazrul@idb-bisew.org</email>
+		</trainee>
+	</trainees>
+
+=======================================================
+	Solutin #16
+=======================================================
+trainees.xsd
+<?xml version='1.0'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:simpleType name="char8Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="varchar50Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="trainees">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="trainee" maxOccurs="unbounded" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="traineeid" type="char8Type"/>
+							<xsd:element name="traineename" type="varchar50Type" />
+							<xsd:element name="email" type="varchar50Type"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:unique name="myId"> 
+      <xsd:selector xpath="trainee"/> 
+      <xsd:field xpath="traineeid"/> 
+    </xsd:unique>
+</xsd:schema>
+Sample XML
+<?xml version='1.0'?>
+	<trainees xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="trainees.xsd">
+		<trainee>
+			<traineeid>12345678</traineeid>
+			<traineename>Nazrul</traineename>
+			<email>nazrul@idb-bisew.org</email>
+		</trainee>
+		<trainee>
+			<traineeid>12345674</traineeid>
+			<traineename>Sonia</traineename>
+			<email>sonia@idb-bisew.org</email>
+		</trainee>
+	</trainees>

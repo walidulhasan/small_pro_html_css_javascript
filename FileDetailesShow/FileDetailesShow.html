@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ChatService</title>
+		<style type="text/css">
+			body{
+				font-family:"Century Gothic";
+				font-size:.9em;
+				border-radius: 10px;
+				background: rgb(214 ,214 ,214);
+				box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+				height: 690px;
+				padding: 10px;
+				margin: 10px;
+			}
+			#show{
+				width:400px;
+				height:635px;
+				border-radius: 10px;
+				background: rgb(214 ,214 ,214);
+				box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+				padding: 10px;
+				margin: 10px;
+				float: left;
+			}
+
+			.na{
+				border-radius: 10px;
+				background: rgb(214 ,214 ,214);
+				box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+				padding: 10px;
+				margin: 10px;
+				display: inline-block;
+			}
+			.mo{
+				margin-bottom: 200px;
+				display: inline-block;
+				border-radius: 10px;
+				background: rgb(214 ,214 ,214);
+				box-shadow: 5px 5px 10px #b6a9a9, -5px -5px 10px #ffffff;
+				padding: 10px;
+				margin: 10px;
+			}
+			#nam{
+				margin-top: 200px;
+			}
+		</style>
+		<script src="Scripts/jquery-3.5.1.js"></script>
+		<script src="Scripts/jquery-migrate-3.3.0.js"></script>
+	</head>
+	<body>
+		<div id="show">
+			<center><span><marquee direction="left" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()"><b style="color:black;">Please drop a file here.......</b></marquee></span> </center>
+		</div>
+		<div id="nam" style="text-align:left">
+			<th><b class="mo">File Name: &nbsp;</b><li class="na" id="fName"></li><br></th>
+			<th><b class="mo">File Size: &nbsp;</b><li class="na" id="fSize"></li><br></th>
+			<th><b class="mo">File Type: &nbsp;</b><li class="na" id="fType"></li><br></th>
+			<th><b class="mo">File Date: &nbsp;</b><li class="na" id="fDate"></li><br></th>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				jQuery.event.props.push('dataTransfer');
+				$("#show").on('dragenter',preventDefault);
+				$("#show").on('dragover',preventDefault);
+				$("#show").on('drop',dropitem);
+			});
+			function preventDefault(e) {
+				e.preventDefault();
+			}
+			function dropitem(e){
+				var f=e.dataTransfer.files;
+				fName.innerHTML=f[0].name;
+				fSize.innerHTML=f[0].size;
+				fType.innerHTML=f[0].type;
+				fDate.innerHTML=f[0].date;
+				preventDefault(e);
+				
+			}
+		</script>
+	</body>
+</html>
